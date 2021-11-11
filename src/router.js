@@ -20,7 +20,7 @@ export default new Router({
       component: () => import("./pages/festivals/Index.vue")
     },
     {
-      path: "/festivals",
+      path: "/festivals/:id",
       name: "festivals_show",
       component: () => import("./pages/festivals/Show.vue")
     }

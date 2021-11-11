@@ -18,7 +18,7 @@ export default {
   components: {},
     data(){
         return{
-            festivals: {}
+            festival: {}
         };
     },
     mounted(){
@@ -27,12 +27,7 @@ export default {
     methods: {
         getData(){
             axios
-                .get("https://festivals-api.herokuapp.com/api/festivals/60205e996e2181ac4f9eadcd",
-                {
-                    headers: {
-                        "Authorization": "Bearer"
-                    }
-                })
+                .get(`https://festivals-api.herokuapp.com/api/festivals/${this.$route.params.id}`)
                 .then(response => {
                     console.log(response)
                 })

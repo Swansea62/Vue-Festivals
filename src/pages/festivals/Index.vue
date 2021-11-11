@@ -5,7 +5,7 @@
         v-for="festival in festivals"
         :key="festival._id"
     >
-    {{ festival.title }}
+    <router-link :to="{name:'festivals_show', params: { id: festival._id}}">{{ festival.title }}</router-link>
     </p>
   </b-col>
 </template>
@@ -30,7 +30,7 @@ export default {
                 .get("https://festivals-api.herokuapp.com/api/festivals")
                 .then(response => {
                     console.log(response.data)
-                    this.festival = response.data
+                    this.festivals = response.data
                 })
                 .catch(error => console.log(error))
         }
