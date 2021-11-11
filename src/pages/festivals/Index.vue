@@ -1,15 +1,33 @@
 <template>
   <b-col>
-    <h2>Welcome to the Cloud Festivals Website</h2>
+    <h2>Welcome to the Festivals Page</h2>
   </b-col>
 </template>
 
 <script>
-// import HelloWorld from "@/components/HelloWorld.vue";
+import axios from 'axios'
+
 export default {
   name: "FestivalsIndex",
   components: {
-    // HelloWorld
+      data(){
+          return{
+
+          }
+      },
+      mounted(){
+          this.getData()
+      },
+      methods: {
+          getData(){
+              axios
+                .get("https://festivals-api.herokuapp.com/api/festivals")
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => console.log(error))
+          }
+      }
   }
 };
 </script>
