@@ -17,7 +17,7 @@ export default new Router({
     {
       path: "/festivals",
       name: "festivals_index",
-      component: FestivalsIndex
+      component: () => import("./pages/festivals/Index.vue")
     }
     ///////////////
   ]
