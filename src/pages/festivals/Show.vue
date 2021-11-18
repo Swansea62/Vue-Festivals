@@ -14,22 +14,31 @@
 import axios from 'axios'
 
 export default {
-  name: "FestivalShow",
+  name: "FestivalsShow",
   components: {},
     data(){
         return{
             festival: {}
-        };
+        }
     },
     mounted(){
         this.getData()
     },
     methods: {
         getData(){
+
+            let token = localStorage.getItem('token')
+
             axios
-                .get(`https://festivals-api.herokuapp.com/api/festivals/${this.$route.params.id}`)
+                .get(`https://festivals-api.herokuapp.com/api/festivals/${this.$route.params.id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
                 .then(response => {
-                    console.log(response)
+                    console.log(response.data)
+                    this.festival = response.data
                 })
                 .catch(error => console.log(error))
         }
