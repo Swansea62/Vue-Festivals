@@ -40,7 +40,9 @@ export default {
                     console.log(response.data)
                     this.festival = response.data
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    console.log(error)
+                })
         }
     }
 };
