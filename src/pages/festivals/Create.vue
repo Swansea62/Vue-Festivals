@@ -60,6 +60,7 @@
     </b-col>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: "FestivalCreate",
     data() {
@@ -75,7 +76,17 @@ export default {
     },
     methods: {
         submitForm() {
-
+            axios.post()
+                 .then(response => {
+                     console.log(response.data)
+                     this.$router.push({
+                         name: "festivals_index"
+                     })
+                 })
+                 .catch(err => {
+                     console.log(err)
+                     console.log(err.response.data)
+                 })
         },
         cancel() {
             this.$router.go(-1)
