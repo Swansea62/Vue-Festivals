@@ -1,6 +1,26 @@
 <template>
   <b-col>
-    <h2>Welcome to the Festivals Page</h2>
+    <h2>Festivals</h2>
+    <b-button 
+    :to="{
+        name: 'festivals_create'
+        }">
+    Add
+    </b-button>
+
+    <b-table responsive head-varient="dark" striped hover :items="festivals" :fields="headings">
+        <template #cell(title)="data">
+            <p>{{ data.value }}</p>
+            <router-link :to="{name:'festivals_show', params: { id: data.item._id}}">{{ data.value }}</router-link>
+        </template>
+        <template #cell(start_date)="data">
+            <p>{{ new Date(data.value).toLocaleString() }}</p>
+        </template>
+        <template #cell(end_date)="data">
+            <p>{{ new Date(data.value).toLocaleString() }}</p>
+        </template>
+    </b-table>
+
     <p
         v-for="festival in festivals"
         :key="festival._id"
@@ -18,6 +38,19 @@ export default {
   components: {},
     data(){
         return{
+            headings: [
+                {
+                    key: 'title',
+                    sortable: true
+                }, 
+                'description', 
+                {
+                    key: 'city',
+                    sortable: true
+                }, 
+                'start_date', 
+                'end_date'
+                ],
             festivals: []
         };
     },
@@ -37,3 +70,9 @@ export default {
     }
 };
 </script>
+
+<style>
+    .btn{
+        margin-bottom:10px;
+    }
+</style>
