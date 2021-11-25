@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/config';
 
 export default {
   name: "Home",
@@ -36,7 +36,7 @@ export default {
   methods:{
     login(){
       axios
-        .post('https://festivals-api.herokuapp.com/api/users/login', {
+        .post('/users/login', {
           email: this.form.email,
           password: this.form.password
         })

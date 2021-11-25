@@ -60,7 +60,7 @@
     </b-col>
 </template>
 <script>
-import axios from 'axios'
+import axios from '@/config'
 export default {
     name: "FestivalCreate",
     data() {
@@ -76,16 +76,31 @@ export default {
     },
     methods: {
         submitForm() {
-            axios.post()
+            let token = localStorage.getItem('token')
+
+            axios.post('/festivals', this.form, {
+                    title: this.form.title,
+                    description: this.form.description,
+                    city: this.form.city,
+                    start_date: this.form.start_date,
+                    end_date: this.form.end_date
+                },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                ///
                  .then(response => {
                      console.log(response.data)
                      this.$router.push({
                          name: "festivals_index"
                      })
                  })
+                 ///
                  .catch(err => {
                      console.log(err)
-                     console.log(err.response.data)
+                     console.log(err.response.data.errors)
                  })
         },
         cancel() {

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/config'
 
 export default {
   name: "FestivalsIndex",
@@ -60,7 +60,7 @@ export default {
     methods: {
         getData(){
             axios
-                .get("https://festivals-api.herokuapp.com/api/festivals")
+                .get("/festivals")
                 .then(response => {
                     console.log(response.data)
                     this.festivals = response.data
