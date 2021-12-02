@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">FestivalCloud</a>
+      {{ msg }}
       <button
         class="navbar-toggler"
         type="button"
@@ -28,11 +29,12 @@
 export default {
   name: "MyNavBar",
   props: {
+    msg: String,
     loggedIn: Boolean
   },
   methods: {
     logout() {
-      this.$emit('logout')
+      this.$store.dispatch('logout')
     }
   }
 };
